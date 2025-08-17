@@ -1,0 +1,358 @@
+/* ========================================================================= */
+/* BAGIAN CSS UNTUK TAMPILAN                       */
+/* ========================================================================= */
+
+/* Import font dari Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap");
+
+/* Pengaturan dasar untuk seluruh halaman (menggunakan Tailwind) */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden; /* Mencegah scroll saat animasi */
+  position: relative;
+}
+
+/* Pengaturan untuk setiap halaman */
+.page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+/* Kelas yang aktif untuk menampilkan halaman */
+.page.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Animasi berdenyut untuk bingkai foto */
+@keyframes pulseFrame {
+  0% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 4px 14px rgba(255, 105, 180, 0.5);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.7);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 4px 14px rgba(255, 105, 180, 0.5);
+  }
+}
+
+/* Efek foto pada halaman 1 */
+.photo-frame-1 {
+  background-image: url("img/t1.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 9999px;
+  transform: rotate(12deg);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgb(181, 14, 98);
+  animation: pulseFrame 3s infinite ease-in-out; /* Terapkan animasi baru */
+}
+
+.photo-frame-2 {
+  background-image: url("img/t3.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 9999px;
+  transform: rotate(-6deg);
+  transition: all 0.5s ease;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgb(111, 21, 196);
+  animation: pulseFrame 3s infinite ease-in-out; /* Terapkan animasi baru */
+}
+
+/* Animasi Bintang untuk Halaman 1 */
+.star-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: radial-gradient(circle, #ff69b4, #8a2be2, #ffffff);
+  border-radius: 50%;
+  animation: blinkAndMove linear infinite;
+}
+
+@keyframes blinkAndMove {
+  0% {
+    transform: translateX(-100%) scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(0%) scale(1);
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.5;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.5;
+  }
+  65% {
+    opacity: 1;
+  }
+  75% {
+    transform: translateX(100%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Animasi Kembang Api Pelangi untuk Halaman 2 */
+.firework {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  bottom: 0;
+  animation: rise 2s ease-out forwards;
+}
+
+.firework::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 7px;
+  height: 5px;
+  border-radius: 50%;
+  background: hsl(calc(var(--hue) * 36), 100%, 50%);
+  animation: explode 0.5s ease-out forwards;
+  opacity: 1;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-50vh);
+    opacity: 1;
+  }
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Animasi Aurora untuk Halaman 3 */
+#page3 {
+  background: linear-gradient(100deg, #23013b 0%, #8400ff 50%, #020202 100%);
+  background-size: 200% 200%;
+  animation: aurora 5s infinite alternate;
+}
+
+@keyframes aurora {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+/* Animasi Foto Gelembung untuk Halaman 3 */
+.bubble {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+  animation: floatBubble linear infinite;
+}
+
+@keyframes floatBubble {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50vh) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+/* Animasi untuk tombol di halaman 4 */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Animasi Teks Strobo untuk Halaman 5 */
+.strobo-text {
+  position: absolute;
+  top: 50%;
+  right: -100%;
+  transform: translateY(-50%);
+  animation: slideAndStrobo 12s linear infinite;
+  font-family: "Pacifico", cursive;
+}
+
+@keyframes slideAndStrobo {
+  0% {
+    right: -100%;
+  }
+  50% {
+    right: 50%;
+    transform: translateX(50%) translateY(-50%);
+  }
+  100% {
+    right: 200%;
+  }
+}
+
+/* Animasi Kembang Api Hati untuk Halaman 5 */
+.love-firework {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff007f;
+  border-radius: 50%;
+  animation: heartExplosion 1s ease-out forwards;
+}
+
+@keyframes heartExplosion {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Animasi Bunga Neon untuk Halaman 5 */
+.neon-flower-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.neon-flower {
+  position: absolute;
+  bottom: -200px;
+  width: 80px;
+  height: 80px;
+  animation: riseAndBloom 10s ease-out forwards;
+}
+
+@keyframes riseAndBloom {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-80vh) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Tombol Navigasi */
+.nav-button {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #ff69b4, #8a2be2);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.nav-button:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05) translateX(-50%);
+}
+
+.centered-button {
+  position: static;
+  transform: none;
+  margin-top: 2rem;
+}
+
+/* Modal Notifikasi Kustom */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background-color: #333;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 30px rgba(255, 105, 180, 0.5);
+}
+
+.modal-close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
