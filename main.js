@@ -150,36 +150,35 @@ window.onload = function () {
   document.body.classList.remove("container"); // Mulai animasi bintang segera setelah halaman dimuat
 };
 
-// 2. Memuat YouTube IFrame API secara asynchronous.
-var tag = document.createElement("script");
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName("script")[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-// 3. Fungsi ini membuat <iframe> (pemutar video)
-//    setelah kode API diunduh.
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player("player", {
-    // Sembunyikan pemutar
-    height: "0",
-    width: "0",
-    // Ganti dengan ID video Anda
-    videoId: "edjVJvK4PxM",
-    playerVars: {
-      autoplay: 1, // Putar otomatis
-      loop: 1, // Ulangi video
-      controls: 0, // Sembunyikan kontrol pemutar
-      // 'playlist' diperlukan agar loop berfungsi
-      playlist: "edjVJvK4PxM",
-    },
-    events: {
-      onReady: onPlayerReady,
-    },
+/* 
+  Kode YouTube IFrame API dihapus karena tidak digunakan.
+  Untuk pemutaran audio, gunakan elemen <audio> di index.html dan kontrolnya melalui JavaScript jika diperlukan.
+  Contoh kontrol audio:
+*/
+
+// Mendapatkan elemen audio (pastikan ada <audio id="myAudio" src="audio/namafile.mp3"></audio> di index.html)
+const audio = document.getElementById("audio-player");
+
+// Fungsi untuk play audio dari detik 45 dan loop terus
+function playAudioFrom45() {
+  if (audio) {
+    audio.currentTime = 45;
+    audio.volume = 0.7;
+    audio.play().catch((err) => {
+      console.error("Audio playback failed:", err);
+    });
+  }
+}
+
+// Saat audio berakhir, ulangi dari detik 45
+if (audio) {
+  audio.addEventListener("ended", () => {
+    audio.currentTime = 45;
+    audio.play();
   });
 }
-// 4. API akan memanggil fungsi ini saat pemutar video siap.
-function onPlayerReady(event) {
-  event.target.seekTo(45); // Mulai pada detik ke-46
-  event.target.playVideo(); // Memulai pemutaran
-  event.target.setVolume(70); // Atur volume (0-100), sesuaikan jika perlu
-}
+
+// Play otomatis saat halaman dimuat, mulai dari detik 45
+window.addEventListener("DOMContentLoaded", () => {
+  playAudioFrom45();
+});
