@@ -159,10 +159,10 @@ window.onload = function () {
 // Mendapatkan elemen audio (pastikan ada <audio id="myAudio" src="audio/namafile.mp3"></audio> di index.html)
 const audio = document.getElementById("audio-player");
 
-// Fungsi untuk play audio dari detik 45 dan loop terus
-function playAudioFrom45() {
+// Fungsi untuk play audio dari detik 87 (1 menit 27 detik) dan loop terus
+function playAudioFrom87() {
   if (audio) {
-    audio.currentTime = 45;
+    audio.currentTime = 87;
     audio.volume = 0.7;
     audio.play().catch((err) => {
       console.error("Audio playback failed:", err);
@@ -170,15 +170,15 @@ function playAudioFrom45() {
   }
 }
 
-// Saat audio berakhir, ulangi dari detik 45
+// Saat audio berakhir, ulangi dari detik 87
 if (audio) {
   audio.addEventListener("ended", () => {
-    audio.currentTime = 45;
+    audio.currentTime = 87;
     audio.play();
   });
 }
 
-// Play otomatis saat halaman dimuat, mulai dari detik 45
+// Play otomatis saat halaman dimuat, mulai dari detik 87
 window.addEventListener("DOMContentLoaded", () => {
-  playAudioFrom45();
+  playAudioFrom87();
 });
